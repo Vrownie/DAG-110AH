@@ -1,0 +1,75 @@
+\documentclass{article}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+\begin{document}
+
+\title{Lecture 1 Notes}
+\author{David Gieseker}
+\maketitle
+
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\section{Basic Notations}
+The following notations will be used in this class:
+\begin{itemize}
+	\item $\emptyset = \{\}$ is the empty set
+	\item $\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\}$ are the integers
+	\item $\mathbb{C} = \{a+bi \mid i=\sqrt{-1}, a,b\in\mathbb{Z}\}$ are the complex numbers
+	\item $\mathbb{Q} = \{\frac{a}{b} \mid a,b\in\mathbb{Z}, b\neq0\}$ are the rational numbers
+	\item $\mathbb{Z}^+ = \{1,2,\dots\}$ are the positive integers
+\end{itemize}
+
+\section{The Well-Ordering Principle}
+\begin{definition}
+Suppose $S \subseteq \mathbb{R}$. Then, $t\in\mathbb{R}$ is a least element of $S$ if:
+\begin{enumerate}[(i)]
+	\item $t\in S$;
+	\item if $t_1\in S$, then $t\leq t_1$
+\end{enumerate}
+\end{definition}
+\begin{example}
+Let $S=\{t_1\in\mathbb{R}\mid 0<t_1\}$. Then, $S$ has no least element. 
+\end{example}
+\begin{proof}
+If $t$ is a least element of $S$, then $t>0$. But $0<\frac{t}{2}<t$, so there is $\frac{t}{2}<t$ such that $\frac{t}{2}\in S$. This is a contradiction, so $S$ must not have a least element. 
+\end{proof}
+\begin{theorem}
+(Well Ordering Property of $\mathbb{Z}^+$) if $S\subseteq\mathbb{Z}^+$ and $S\neq\emptyset$, then $S$ has a least element. 
+\end{theorem}
+\begin{corollary}
+There does not exist a $t_1 \in \mathbb{Z}$, such that $0<t_1<1$. 
+\end{corollary}
+\begin{proof}
+Let $S=\{t_1\in\mathbb{Z}^+\mid0<t_1<1$, and suppose that $S\neq\emptyset$. Then, let $t$ be the least element of $S$. We have $0<t^2<t<1$, and it is clear that $t^2\in S$. This is a contradiction, so $S$ has no least element. And since $S\subseteq\mathbb{Z}^+$, $S=\emptyset$ by the Well-Ordering Principle. 
+\end{proof}
+\section{The Principle of Mathematical Induction}
+The Principle of Induction is implied by the Well-Ordering Principle. 
+\begin{definition}
+$P(n)$ is a statement about $n\in\mathbb{Z}^+$ which is either true or false.
+\end{definition}
+\begin{example}
+Let $P(n)$ be the statement "$n^3+1 \mbox{ is divisible by } 3$". Then, $P(1)$ is false but $P(2)$ is true.  
+\end{example}
+\begin{theorem}
+(Principle of Induction) Suppose that we know two things about P: 
+\begin{enumerate}[(i)]
+	\item $P(1)$ is true;
+	\item (Inductive Hypothesis) For any $n\in\mathbb{Z}^+$, $P(m)$ is true $\forall m<n$ $\implies$ $P(n)$ is true. 
+\end{enumerate}
+Then, we can conclude that $P(n)$ is true $\forall n\in\mathbb{Z}^+$.
+\end{theorem}
+\begin{proof}
+Let $S=\{n\mid n\in\mathbb{Z}^+, P(n) \mbox{ is false}\}$. From given, $P(1) \mbox{ is true} $ so $1\notin S$. Now suppose that $P(k)$ is false for some $k$. Then, $S\neq\emptyset$ and $S$ has a least element $n_1\in S$ by the Well-Ordering Principle. Therefore, $P(n_1-1),P(n_1-2),\dots,P(1)$ are all true. Then by the Inductive Hypothesis given, $P(n_1)$ must be true. Thus, $P(n_1) \notin S$. This is a contradiction, so $S=\emptyset$ i.e. $P(n)$ is true $\forall n \geq 1$. 
+\end{proof}
+%\begin{example}
+%Let $P(n) = (n\geq6 \implies \exists x, y \in\mathbb{Z}^+ \mbox{ s.t. } n = 2x+7y)$. Suppose that $P(m)$ is a minimal counter-example to $P$. We know that $m\neq7$, since $7=2\cdot0+7\cdot1$. Then if we have $k<m$, $\exists x', y' \in \mathbb{Z}^+$ such that $k=2x'+7y'$. 
+%\end{example}
+\end{document}
