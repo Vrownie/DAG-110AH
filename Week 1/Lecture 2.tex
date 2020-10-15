@@ -1,0 +1,69 @@
+\documentclass{article}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+\begin{document}
+
+\title{Lecture 2 Notes}
+\author{David Gieseker}
+\maketitle
+
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+
+\section{Euclid's Knowledge}
+Let's first review the division algorithm. 
+\begin{theorem}
+Let $a,b \in\mathbb{Z}$ and $b>0$. Then, $\exists! q,r\in\mathbb{Z}$ such that $a=qb+r$ where $0 \leq r<b$. 
+\end{theorem}
+This is the same as what we learned from elementary school. We know that $q$ is the quotient and $r$ is the remainder -- and both are unique.
+%\begin{example}
+%$7=2\cdot3+1, -7=-3\cdot3+2$
+%\end{example}
+\begin{proof}
+(existence) Let $S=\{n\in\mathbb{Z}\mid\exists x\in\mathbb{Z}, n=a-bx\geq0\}$. Suppose that $S\neq\emptyset$ (the elements are potential $q$'s). Then, we can consider 3 different cases: 
+\begin{enumerate}
+	\item If $a\geq0$, we take $x=0$ and $a\in S$. 
+	\item If $a<0$, we take $x=a$. Then, $n=a-ab=a(1-b)$. But since $b>0$ and $b\in\mathbb{Z}$, $n=a(1-b)\geq0$. Therefore, $a\in S$. 
+\end{enumerate}
+And by the Well-Ordering Property, there is a least element $r$ of $S$. If we denote its corresponding $x$ to be $q$, then $r=a-bq\geq0 \implies a=qb+r$. \\
+Next, we show that $0\leq r < b$. We showed $r\geq0$ previously. Then assume that $r\geq b$, and thus $0\leq r-b = a-b(q+1)\in S$. However, $r$ is assumed to be a least element of $S$, so $r\leq r-b$ and $b\leq0$. This is a contradiction, so $r < b$.
+\end{proof}
+\begin{proof}
+(uniqueness) Assume that quotients and remainders are not unique. Then $a=qb+r=q'b+r'$, where $0\leq r<b, 0\leq r'<b$. If the remainder is not unique, then we can take $r>r'$ without loss of generality. Thus, we have $0<r-r'\leq r<b$. And since $0\neq q-q'\in\mathbb{Z}$, $|q-q'|\geq1$. Then from the original equation, we have $r-r'=(q'-q)b\geq b$. This is a contradiction to the prior inequality. Thus, $r=r'$ must hold, and $q=q'$ follows as $b>0$. 
+\end{proof}
+\begin{definition}
+Let $d,m\in\mathbb{Z}$ where $d\neq0$. Then $d$ divides $m$ if $\exists e\in\mathbb{Z}, m=ed$, notated by $d\mid m$.
+\end{definition}
+\begin{definition}
+Let $m,n\in\mathbb{Z}$. Then, $d\in\mathbb{Z}$ is a greatest common divisor, notated by $d=(m,n)$, of $m$ and $n$ if: 
+\begin{enumerate}[(i)]
+	\item $d>0$
+	\item $d\mid m, d\mid n$
+	\item if $e\in\mathbb{Z}$ and $e\mid m, e\mid n$, then $e|d$. 
+\end{enumerate}
+In other words, $d$ is a divisor of $m$ and $n$ that divides any other common divisors. 
+\end{definition}
+\begin{definition}
+$f\in\mathbb{Z}$ is a $\mathbb{Z}$ linear combination of $m,n\in\mathbb{Z}$ if $\exists x,y\in\mathbb{Z}$ such that $f=xm+yn$.
+\end{definition}
+\begin{theorem}
+Let $m,n\in\mathbb{Z}$, and at least one of which is nonzero. Then, $d=(m,n)$ exists, is unique, and is a $\mathbb{Z}$ linear combination of $m$ and $n$. 
+\end{theorem}
+\begin{proof}
+Let's define $S=\{am+bn>0\mid a,b\in\mathbb{Z}\}$. Now, we first show that $d\mid m$. \\
+$S$ is nonempty, since we can always take $a=sgn(m),b=0$ and $am+bn\in S$ must hold. Thus, it must have a least element $d$. Then by the division algorithm, $\exists q,r\in\mathbb{Z}$ such that $m=qd+r$ and $0\leq r<d$.
+$$r=m-qd=m-(am+bn)q=(1-aq)m-bqn\geq0$$
+Therefore, $r$ is also a $\mathbb{Z}$ linear combination of $m$ and $n$. However $r<d$ and $d$ is the least element of $S$, so $r=0$ is the only possibility. Therefore, $m=qd\implies d\mid m$. Similarly, $d\mid n$ can be proven with a similar method. \\
+Now, suppose that $e$ is another common divisor of $m$ and $n$. Thus $m=xe$ and $n=ye$, so $d=(ax+by)e$ and it follows that $e|d$. Therefore $d=(m,n)$ by definition, and it is a $\mathbb{Z}$ linear combination of $m$ and $n$ as it is in $S$. 
+\end{proof}
+\begin{proof}
+(uniqueness) Let $d,d'$ be two GCD's of $m$ and $n$. Then, $d|d'$ and $d'|d$ must both hold. This is true only when $d=\pm d'$, and since $d,d'>0$ they must be equal. 
+\end{proof}
+\end{document}
